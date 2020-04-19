@@ -7,6 +7,7 @@ class DatePickerTheme with DiagnosticableMixin {
   final TextStyle cancelStyle;
   final TextStyle doneStyle;
   final TextStyle itemStyle;
+  final TextStyle secondaryStyle;
   final Color backgroundColor;
   final Color headerColor;
 
@@ -17,6 +18,7 @@ class DatePickerTheme with DiagnosticableMixin {
   const DatePickerTheme({
     this.cancelStyle = const TextStyle(color: Colors.black54, fontSize: 16),
     this.doneStyle = const TextStyle(color: Colors.blue, fontSize: 16),
+    this.secondaryStyle = const TextStyle(color: Colors.blue, fontSize: 16),
     this.itemStyle = const TextStyle(color: Color(0xFF000046), fontSize: 18),
     this.backgroundColor = Colors.white,
     this.headerColor,

@@ -30,19 +30,30 @@ class DatePicker {
     locale: LocaleType.en,
     DateTime currentTime,
     DatePickerTheme theme,
+    String secondaryAction,
+    Function onSecondaryAction,
   }) async {
     return await Navigator.push(
-        context,
-        new _DatePickerRoute(
-            showTitleActions: showTitleActions,
-            onChanged: onChanged,
-            onConfirm: onConfirm,
-            onCancel: onCancel,
-            locale: locale,
-            theme: theme,
-            barrierLabel: MaterialLocalizations.of(context).modalBarrierDismissLabel,
-            pickerModel: DatePickerModel(
-                currentTime: currentTime, maxTime: maxTime, minTime: minTime, locale: locale)));
+      context,
+      new _DatePickerRoute(
+        showTitleActions: showTitleActions,
+        onChanged: onChanged,
+        onConfirm: onConfirm,
+        onCancel: onCancel,
+        locale: locale,
+        theme: theme,
+        barrierLabel:
+            MaterialLocalizations.of(context).modalBarrierDismissLabel,
+        pickerModel: DatePickerModel(
+          currentTime: currentTime,
+          maxTime: maxTime,
+          minTime: minTime,
+          locale: locale,
+        ),
+        secondaryAction: secondaryAction,
+        onSecondaryAction: onSecondaryAction,
+      ),
+    );
   }
 
   ///
@@ -58,19 +69,29 @@ class DatePicker {
     locale: LocaleType.en,
     DateTime currentTime,
     DatePickerTheme theme,
+    String secondaryAction,
+    Function onSecondaryAction,
   }) async {
     return await Navigator.push(
-        context,
-        new _DatePickerRoute(
-            showTitleActions: showTitleActions,
-            onChanged: onChanged,
-            onConfirm: onConfirm,
-            onCancel: onCancel,
-            locale: locale,
-            theme: theme,
-            barrierLabel: MaterialLocalizations.of(context).modalBarrierDismissLabel,
-            pickerModel: TimePickerModel(
-                currentTime: currentTime, locale: locale, showSecondsColumn: showSecondsColumn)));
+      context,
+      new _DatePickerRoute(
+        showTitleActions: showTitleActions,
+        onChanged: onChanged,
+        onConfirm: onConfirm,
+        onCancel: onCancel,
+        locale: locale,
+        theme: theme,
+        barrierLabel:
+            MaterialLocalizations.of(context).modalBarrierDismissLabel,
+        pickerModel: TimePickerModel(
+          currentTime: currentTime,
+          locale: locale,
+          showSecondsColumn: showSecondsColumn,
+        ),
+        secondaryAction: secondaryAction,
+        onSecondaryAction: onSecondaryAction,
+      ),
+    );
   }
 
   ///
@@ -85,18 +106,28 @@ class DatePicker {
     locale: LocaleType.en,
     DateTime currentTime,
     DatePickerTheme theme,
+    String secondaryAction,
+    Function onSecondaryAction,
   }) async {
     return await Navigator.push(
-        context,
-        new _DatePickerRoute(
-            showTitleActions: showTitleActions,
-            onChanged: onChanged,
-            onConfirm: onConfirm,
-            onCancel: onCancel,
-            locale: locale,
-            theme: theme,
-            barrierLabel: MaterialLocalizations.of(context).modalBarrierDismissLabel,
-            pickerModel: Time12hPickerModel(currentTime: currentTime, locale: locale)));
+      context,
+      new _DatePickerRoute(
+        showTitleActions: showTitleActions,
+        onChanged: onChanged,
+        onConfirm: onConfirm,
+        onCancel: onCancel,
+        locale: locale,
+        theme: theme,
+        barrierLabel:
+            MaterialLocalizations.of(context).modalBarrierDismissLabel,
+        pickerModel: Time12hPickerModel(
+          currentTime: currentTime,
+          locale: locale,
+        ),
+        secondaryAction: secondaryAction,
+        onSecondaryAction: onSecondaryAction,
+      ),
+    );
   }
 
   ///
@@ -113,19 +144,30 @@ class DatePicker {
     locale: LocaleType.en,
     DateTime currentTime,
     DatePickerTheme theme,
+    String secondaryAction,
+    Function onSecondaryAction,
   }) async {
     return await Navigator.push(
-        context,
-        new _DatePickerRoute(
-            showTitleActions: showTitleActions,
-            onChanged: onChanged,
-            onConfirm: onConfirm,
-            onCancel: onCancel,
-            locale: locale,
-            theme: theme,
-            barrierLabel: MaterialLocalizations.of(context).modalBarrierDismissLabel,
-            pickerModel: DateTimePickerModel(
-                currentTime: currentTime, minTime: minTime, maxTime: maxTime, locale: locale)));
+      context,
+      new _DatePickerRoute(
+        showTitleActions: showTitleActions,
+        onChanged: onChanged,
+        onConfirm: onConfirm,
+        onCancel: onCancel,
+        locale: locale,
+        theme: theme,
+        barrierLabel:
+            MaterialLocalizations.of(context).modalBarrierDismissLabel,
+        pickerModel: DateTimePickerModel(
+          currentTime: currentTime,
+          minTime: minTime,
+          maxTime: maxTime,
+          locale: locale,
+        ),
+        secondaryAction: secondaryAction,
+        onSecondaryAction: onSecondaryAction,
+      ),
+    );
   }
 
   ///
@@ -140,18 +182,25 @@ class DatePicker {
     locale: LocaleType.en,
     BasePickerModel pickerModel,
     DatePickerTheme theme,
+    String secondaryAction,
+    Function onSecondaryAction,
   }) async {
     return await Navigator.push(
-        context,
-        new _DatePickerRoute(
-            showTitleActions: showTitleActions,
-            onChanged: onChanged,
-            onConfirm: onConfirm,
-            onCancel: onCancel,
-            locale: locale,
-            theme: theme,
-            barrierLabel: MaterialLocalizations.of(context).modalBarrierDismissLabel,
-            pickerModel: pickerModel));
+      context,
+      new _DatePickerRoute(
+        showTitleActions: showTitleActions,
+        onChanged: onChanged,
+        onConfirm: onConfirm,
+        onCancel: onCancel,
+        locale: locale,
+        theme: theme,
+        barrierLabel:
+            MaterialLocalizations.of(context).modalBarrierDismissLabel,
+        pickerModel: pickerModel,
+        secondaryAction: secondaryAction,
+        onSecondaryAction: onSecondaryAction,
+      ),
+    );
   }
 }
 
@@ -166,6 +215,8 @@ class _DatePickerRoute<T> extends PopupRoute<T> {
     this.locale,
     RouteSettings settings,
     pickerModel,
+    this.secondaryAction,
+    this.onSecondaryAction,
   })  : this.pickerModel = pickerModel ?? DatePickerModel(),
         this.theme = theme ?? DatePickerTheme(),
         super(settings: settings);
@@ -177,6 +228,8 @@ class _DatePickerRoute<T> extends PopupRoute<T> {
   final DatePickerTheme theme;
   final LocaleType locale;
   final BasePickerModel pickerModel;
+  final String secondaryAction;
+  final Function onSecondaryAction;
 
   @override
   Duration get transitionDuration => const Duration(milliseconds: 200);
@@ -195,13 +248,14 @@ class _DatePickerRoute<T> extends PopupRoute<T> {
   @override
   AnimationController createAnimationController() {
     assert(_animationController == null);
-    _animationController = BottomSheet.createAnimationController(navigator.overlay);
+    _animationController =
+        BottomSheet.createAnimationController(navigator.overlay);
     return _animationController;
   }
 
   @override
-  Widget buildPage(
-      BuildContext context, Animation<double> animation, Animation<double> secondaryAnimation) {
+  Widget buildPage(BuildContext context, Animation<double> animation,
+      Animation<double> secondaryAnimation) {
     Widget bottomSheet = new MediaQuery.removePadding(
       context: context,
       removeTop: true,
@@ -210,6 +264,8 @@ class _DatePickerRoute<T> extends PopupRoute<T> {
         locale: this.locale,
         route: this,
         pickerModel: pickerModel,
+        secondaryAction: secondaryAction,
+        onSecondaryAction: onSecondaryAction,
       ),
     );
     ThemeData inheritTheme = Theme.of(context, shadowThemeOnly: true);
@@ -221,8 +277,15 @@ class _DatePickerRoute<T> extends PopupRoute<T> {
 }
 
 class _DatePickerComponent extends StatefulWidget {
-  _DatePickerComponent(
-      {Key key, @required this.route, this.onChanged, this.locale, this.pickerModel});
+  _DatePickerComponent({
+    Key key,
+    @required this.route,
+    this.onChanged,
+    this.locale,
+    this.pickerModel,
+    this.secondaryAction,
+    this.onSecondaryAction,
+  });
 
   final DateChangedCallback onChanged;
 
@@ -231,6 +294,10 @@ class _DatePickerComponent extends StatefulWidget {
   final LocaleType locale;
 
   final BasePickerModel pickerModel;
+
+  final String secondaryAction;
+
+  final Function onSecondaryAction;
 
   @override
   State<StatefulWidget> createState() {
@@ -249,12 +316,12 @@ class _DatePickerState extends State<_DatePickerComponent> {
 
   void refreshScrollOffset() {
 //    print('refreshScrollOffset ${widget.pickerModel.currentRightIndex()}');
-    leftScrollCtrl =
-        new FixedExtentScrollController(initialItem: widget.pickerModel.currentLeftIndex());
-    middleScrollCtrl =
-        new FixedExtentScrollController(initialItem: widget.pickerModel.currentMiddleIndex());
-    rightScrollCtrl =
-        new FixedExtentScrollController(initialItem: widget.pickerModel.currentRightIndex());
+    leftScrollCtrl = new FixedExtentScrollController(
+        initialItem: widget.pickerModel.currentLeftIndex());
+    middleScrollCtrl = new FixedExtentScrollController(
+        initialItem: widget.pickerModel.currentMiddleIndex());
+    rightScrollCtrl = new FixedExtentScrollController(
+        initialItem: widget.pickerModel.currentRightIndex());
   }
 
   @override
@@ -268,7 +335,8 @@ class _DatePickerState extends State<_DatePickerComponent> {
           return ClipRect(
             child: CustomSingleChildLayout(
               delegate: _BottomPickerLayout(widget.route.animation.value, theme,
-                  showTitleActions: widget.route.showTitleActions, bottomPadding: bottomPadding),
+                  showTitleActions: widget.route.showTitleActions,
+                  bottomPadding: bottomPadding),
               child: GestureDetector(
                 child: Material(
                   color: theme.backgroundColor ?? Colors.white,
@@ -314,7 +382,8 @@ class _DatePickerState extends State<_DatePickerComponent> {
       child: Container(
           padding: EdgeInsets.all(8.0),
           height: theme.containerHeight,
-          decoration: BoxDecoration(color: theme.backgroundColor ?? Colors.white),
+          decoration:
+              BoxDecoration(color: theme.backgroundColor ?? Colors.white),
           child: NotificationListener(
               onNotification: (ScrollNotification notification) {
                 if (notification.depth == 0 &&
@@ -421,8 +490,7 @@ class _DatePickerState extends State<_DatePickerComponent> {
     );
   }
 
-  // Title View
-  Widget _renderTitleActionsView(DatePickerTheme theme) {
+  Widget _renderNormalTitleActionView(DatePickerTheme theme) {
     String done = _localeDone();
     String cancel = _localeCancel();
 
@@ -473,12 +541,100 @@ class _DatePickerState extends State<_DatePickerComponent> {
     );
   }
 
+  Widget _renderTitleActionsViewWithSecondary(
+      DatePickerTheme theme, String secondaryAction) {
+    String done = _localeDone();
+    String cancel = _localeCancel();
+
+    return Container(
+      height: theme.titleHeight,
+      decoration: BoxDecoration(
+        color: theme.headerColor ?? theme.backgroundColor ?? Colors.white,
+      ),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: <Widget>[
+          Container(
+            height: theme.titleHeight,
+            child: CupertinoButton(
+              pressedOpacity: 0.3,
+              padding: EdgeInsets.only(left: 16, top: 0),
+              child: Text(
+                '$cancel',
+                style: theme.cancelStyle,
+              ),
+              onPressed: () {
+                Navigator.pop(context);
+                if (widget.route.onCancel != null) {
+                  widget.route.onCancel();
+                }
+              },
+            ),
+          ),
+          Row(
+            children: <Widget>[
+              _buildSecondaryActionTitleView(secondaryAction, theme),
+              Container(
+                height: theme.titleHeight,
+                child: CupertinoButton(
+                  pressedOpacity: 0.3,
+                  padding: EdgeInsets.only(right: 16, top: 0),
+                  child: Text(
+                    '$done',
+                    style: theme.doneStyle,
+                  ),
+                  onPressed: () {
+                    Navigator.pop(context, widget.pickerModel.finalTime());
+                    if (widget.route.onConfirm != null) {
+                      widget.route.onConfirm(widget.pickerModel.finalTime());
+                    }
+                  },
+                ),
+              ),
+            ],
+          )
+        ],
+      ),
+    );
+  }
+
+  // Title View
+  Widget _renderTitleActionsView(DatePickerTheme theme) {
+    String secondaryAction = widget.secondaryAction;
+
+    if (secondaryAction != null) {
+      return _renderTitleActionsViewWithSecondary(theme, secondaryAction);
+    }
+
+    return _renderNormalTitleActionView(theme);
+  }
+
   String _localeDone() {
     return i18nObjInLocale(widget.locale)['done'];
   }
 
   String _localeCancel() {
     return i18nObjInLocale(widget.locale)['cancel'];
+  }
+
+  Widget _buildSecondaryActionTitleView(String title, DatePickerTheme theme) {
+    return Container(
+      height: theme.titleHeight,
+      child: CupertinoButton(
+        pressedOpacity: 0.3,
+        padding: EdgeInsets.only(right: 24, top: 0),
+        child: Text(
+          '$title',
+          style: theme.secondaryStyle,
+        ),
+        onPressed: () {
+          Navigator.pop(context, widget.pickerModel.finalTime());
+          if (widget.onSecondaryAction != null) {
+            widget.onSecondaryAction(widget.pickerModel.finalTime());
+          }
+        },
+      ),
+    );
   }
 }
 
