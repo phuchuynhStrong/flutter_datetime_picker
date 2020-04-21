@@ -131,6 +131,7 @@ class HomePage extends StatelessWidget {
                     currentTime: DateTime.now(),
                     locale: LocaleType.en,
                     secondaryAction: "Apply for all",
+                    header: "Hello",
                     onSecondaryAction: (date) {
                       print("Apply for all $date");
                     },
@@ -148,7 +149,14 @@ class HomePage extends StatelessWidget {
                         date.timeZoneOffset.inHours.toString());
                   }, onConfirm: (date) {
                     print('confirm $date');
-                  }, currentTime: DateTime.now());
+                  },
+                      currentTime: DateTime.now(),
+                      header: "Hello",
+                      theme: DatePickerTheme(
+                          headerStyle: TextStyle(
+                        fontSize: 12,
+                        color: Colors.black26,
+                      )));
                 },
                 child: Text(
                   'show time picker',

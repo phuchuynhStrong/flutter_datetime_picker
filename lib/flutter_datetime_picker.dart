@@ -32,6 +32,7 @@ class DatePicker {
     DatePickerTheme theme,
     String action,
     String secondaryAction,
+    String header,
     Function onSecondaryAction,
   }) async {
     return await Navigator.push(
@@ -54,6 +55,7 @@ class DatePicker {
         secondaryAction: secondaryAction,
         onSecondaryAction: onSecondaryAction,
         action: action,
+        header: header,
       ),
     );
   }
@@ -73,6 +75,7 @@ class DatePicker {
     DatePickerTheme theme,
     String action,
     String secondaryAction,
+    String header,
     Function onSecondaryAction,
   }) async {
     return await Navigator.push(
@@ -94,6 +97,7 @@ class DatePicker {
         secondaryAction: secondaryAction,
         onSecondaryAction: onSecondaryAction,
         action: action,
+        header: header,
       ),
     );
   }
@@ -152,6 +156,7 @@ class DatePicker {
     DatePickerTheme theme,
     String action,
     String secondaryAction,
+    String header,
     Function onSecondaryAction,
   }) async {
     return await Navigator.push(
@@ -174,6 +179,7 @@ class DatePicker {
         secondaryAction: secondaryAction,
         onSecondaryAction: onSecondaryAction,
         action: action,
+        header: header,
       ),
     );
   }
@@ -192,6 +198,7 @@ class DatePicker {
     DatePickerTheme theme,
     String action,
     String secondaryAction,
+    String header,
     Function onSecondaryAction,
   }) async {
     return await Navigator.push(
@@ -209,6 +216,7 @@ class DatePicker {
         secondaryAction: secondaryAction,
         onSecondaryAction: onSecondaryAction,
         action: action,
+        header: header,
       ),
     );
   }
@@ -228,6 +236,7 @@ class _DatePickerRoute<T> extends PopupRoute<T> {
     this.secondaryAction,
     this.onSecondaryAction,
     this.action,
+    this.header,
   })  : this.pickerModel = pickerModel ?? DatePickerModel(),
         this.theme = theme ?? DatePickerTheme(),
         super(settings: settings);
@@ -242,6 +251,7 @@ class _DatePickerRoute<T> extends PopupRoute<T> {
   final String secondaryAction;
   final Function onSecondaryAction;
   final String action;
+  final String header;
 
   @override
   Duration get transitionDuration => const Duration(milliseconds: 200);
@@ -279,6 +289,7 @@ class _DatePickerRoute<T> extends PopupRoute<T> {
         secondaryAction: secondaryAction,
         onSecondaryAction: onSecondaryAction,
         action: action,
+        header: header,
       ),
     );
     ThemeData inheritTheme = Theme.of(context, shadowThemeOnly: true);
@@ -299,6 +310,7 @@ class _DatePickerComponent extends StatefulWidget {
     this.secondaryAction,
     this.onSecondaryAction,
     this.action,
+    this.header,
   });
 
   final DateChangedCallback onChanged;
@@ -314,6 +326,8 @@ class _DatePickerComponent extends StatefulWidget {
   final Function onSecondaryAction;
 
   final String action;
+
+  final String header;
 
   @override
   State<StatefulWidget> createState() {
@@ -377,6 +391,7 @@ class _DatePickerState extends State<_DatePickerComponent> {
     if (widget.route.showTitleActions) {
       return Column(
         children: <Widget>[
+          _renderHeader(theme),
           _renderTitleActionsView(theme),
           itemView,
         ],
@@ -651,6 +666,26 @@ class _DatePickerState extends State<_DatePickerComponent> {
         },
       ),
     );
+  }
+
+  Widget _renderHeader(DatePickerTheme theme) {
+    if (widget.header != null) {
+      final width = MediaQuery.of(context).size.width;
+      return Container(
+        width: width,
+        padding: EdgeInsets.symmetric(
+          horizontal: 16,
+          vertical: 12,
+        ),
+        child: Text(
+          "${widget.header}",
+          textAlign: TextAlign.start,
+          style: theme.headerStyle,
+        ),
+      );
+    }
+
+    return SizedBox();
   }
 }
 
