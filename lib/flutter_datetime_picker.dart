@@ -30,6 +30,7 @@ class DatePicker {
     locale: LocaleType.en,
     DateTime currentTime,
     DatePickerTheme theme,
+    String action,
     String secondaryAction,
     Function onSecondaryAction,
   }) async {
@@ -52,6 +53,7 @@ class DatePicker {
         ),
         secondaryAction: secondaryAction,
         onSecondaryAction: onSecondaryAction,
+        action: action,
       ),
     );
   }
@@ -69,6 +71,7 @@ class DatePicker {
     locale: LocaleType.en,
     DateTime currentTime,
     DatePickerTheme theme,
+    String action,
     String secondaryAction,
     Function onSecondaryAction,
   }) async {
@@ -90,6 +93,7 @@ class DatePicker {
         ),
         secondaryAction: secondaryAction,
         onSecondaryAction: onSecondaryAction,
+        action: action,
       ),
     );
   }
@@ -106,6 +110,7 @@ class DatePicker {
     locale: LocaleType.en,
     DateTime currentTime,
     DatePickerTheme theme,
+    String action,
     String secondaryAction,
     Function onSecondaryAction,
   }) async {
@@ -126,6 +131,7 @@ class DatePicker {
         ),
         secondaryAction: secondaryAction,
         onSecondaryAction: onSecondaryAction,
+        action: action,
       ),
     );
   }
@@ -144,6 +150,7 @@ class DatePicker {
     locale: LocaleType.en,
     DateTime currentTime,
     DatePickerTheme theme,
+    String action,
     String secondaryAction,
     Function onSecondaryAction,
   }) async {
@@ -166,6 +173,7 @@ class DatePicker {
         ),
         secondaryAction: secondaryAction,
         onSecondaryAction: onSecondaryAction,
+        action: action,
       ),
     );
   }
@@ -182,6 +190,7 @@ class DatePicker {
     locale: LocaleType.en,
     BasePickerModel pickerModel,
     DatePickerTheme theme,
+    String action,
     String secondaryAction,
     Function onSecondaryAction,
   }) async {
@@ -199,6 +208,7 @@ class DatePicker {
         pickerModel: pickerModel,
         secondaryAction: secondaryAction,
         onSecondaryAction: onSecondaryAction,
+        action: action,
       ),
     );
   }
@@ -217,6 +227,7 @@ class _DatePickerRoute<T> extends PopupRoute<T> {
     pickerModel,
     this.secondaryAction,
     this.onSecondaryAction,
+    this.action,
   })  : this.pickerModel = pickerModel ?? DatePickerModel(),
         this.theme = theme ?? DatePickerTheme(),
         super(settings: settings);
@@ -230,6 +241,7 @@ class _DatePickerRoute<T> extends PopupRoute<T> {
   final BasePickerModel pickerModel;
   final String secondaryAction;
   final Function onSecondaryAction;
+  final String action;
 
   @override
   Duration get transitionDuration => const Duration(milliseconds: 200);
@@ -266,6 +278,7 @@ class _DatePickerRoute<T> extends PopupRoute<T> {
         pickerModel: pickerModel,
         secondaryAction: secondaryAction,
         onSecondaryAction: onSecondaryAction,
+        action: action,
       ),
     );
     ThemeData inheritTheme = Theme.of(context, shadowThemeOnly: true);
@@ -285,6 +298,7 @@ class _DatePickerComponent extends StatefulWidget {
     this.pickerModel,
     this.secondaryAction,
     this.onSecondaryAction,
+    this.action,
   });
 
   final DateChangedCallback onChanged;
@@ -298,6 +312,8 @@ class _DatePickerComponent extends StatefulWidget {
   final String secondaryAction;
 
   final Function onSecondaryAction;
+
+  final String action;
 
   @override
   State<StatefulWidget> createState() {
@@ -491,7 +507,7 @@ class _DatePickerState extends State<_DatePickerComponent> {
   }
 
   Widget _renderNormalTitleActionView(DatePickerTheme theme) {
-    String done = _localeDone();
+    String done = widget.action ?? _localeDone();
     String cancel = _localeCancel();
 
     return Container(
